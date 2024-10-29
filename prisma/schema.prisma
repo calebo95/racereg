@@ -1,0 +1,51 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Change this if you're using a different database
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  name          String?
+  email         String   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  password      String? 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+model Account {
+  id                Int       @id @default(autoincrement())
+  userId            Int
+  provider          String
+  providerAccountId String
+  type              String
+  access_token      String?
+  expires_at        Int?
+  refresh_token     String?
+  scope             String?    // Add scope as an optional field
+  token_type        String?    // Add token_type as an optional field
+  id_token          String?    // Add id_token as an optional field
+  user              User       @relation(fields: [userId], references: [id])
+
+  @@unique([provider, providerAccountId])  // Unique constraint for NextAuth
+}
+
+model Session {
+  id           Int       @id @default(autoincrement())
+  sessionToken String    @unique
+  userId       Int
+  expires      DateTime
+  user         User      @relation(fields: [userId], references: [id])
+}
+
+
