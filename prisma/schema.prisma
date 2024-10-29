@@ -14,6 +14,9 @@ model User {
   name          String?
   email         String   @unique
   emailVerified DateTime?
+  phone         String?  // Optional phone field
+  isRunner      Boolean  @default(false)  // Runner role
+  isDirector    Boolean  @default(false)  // Director role
   image         String?
   accounts      Account[]
   sessions      Session[]
