@@ -19,15 +19,15 @@ function Home() {
       <SessionStatus />
 
       <main className="mt-10">
-        <Image
+        {/* <Image
           src="/images/trail-race.jpg"
           alt="Trail Running Event"
           width={800}
           height={400}
           className="rounded-lg shadow-lg"
-        />
+        /> */}
         <Link href="/dashboard">
-          <a className="btn mt-6">Go to Dashboard</a>
+         Go to Dashboard
         </Link>
       </main>
     </div>

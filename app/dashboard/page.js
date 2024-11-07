@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from 'next/link';
 
 function Dashboard() {
   const session = useSession();
@@ -34,6 +35,11 @@ function Dashboard() {
       <h2 className="text-2xl font-bold mb-4">
         {userRole === "director" ? "Race Director Dashboard" : "Runner Dashboard"}
       </h2>
+      <div className="mt-4">
+        <Link href="/race-finder" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            Go to Race Finder
+        </Link>
+      </div>
       {/* Role-specific content here */}
     </div>
   );

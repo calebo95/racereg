@@ -18,7 +18,7 @@ export default function SessionStatus() {
           Sign in with Google
         </button>
         <Link href="/register">
-          <a className="btn">Register</a>
+          Register
         </Link>
       </div>
     );
